@@ -1,9 +1,12 @@
 import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectContact } from 'components/Store/Contacts/selectors';
-import { selectFilter } from 'components/Store/Filter/selector';
-import { setFilter } from 'components/Store/Filter/filterSlice';
-import * as operations from 'components/Store/Fetch/operations';
+import {
+  selectContact,
+  selectFilter,
+} from 'components/Store/Contacts/selectors';
+
+import { setFilter } from 'components/Store/Contacts/filterSlice';
+import * as operations from 'components/Store/Contacts/operations';
 
 export const useContacts = () => {
   const dispatch = useDispatch();

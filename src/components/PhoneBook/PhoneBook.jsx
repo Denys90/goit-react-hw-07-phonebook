@@ -8,15 +8,9 @@ import { useEffect } from 'react';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useContacts } from 'Hooks/hook';
-// import { useSelector } from 'react-redux';
-// import * as selectors from 'components/Store/Contacts/selectors';
 
 export function PhoneBook() {
   const { fetchAllContacts } = useContacts();
-
-  // const contacts = useSelector(selectors.selectContact);
-  // const isLoading = useSelector(selectors.selectIsLoading);
-  // const error = useSelector(selectors.selectError);
 
   useEffect(() => {
     const fetchData = async () => {

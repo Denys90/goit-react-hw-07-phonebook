@@ -6,19 +6,18 @@ import { selectUseContacts } from 'components/Store/Contacts/selectors';
 import { useContacts } from 'Hooks/hook';
 
 function ContactList() {
-  const contacts = useSelector(selectUseContacts);
+  const filteredContacts = useSelector(selectUseContacts);
   const { removeContact } = useContacts();
   return (
     <List>
-      {contacts &&
-        contacts.map(({ id, name, number }) => (
-          <li key={id}>
-            {name}: {number}
-            <button onClick={() => removeContact(id)}>
-              <MdDeleteForever />
-            </button>
-          </li>
-        ))}
+      {filteredContacts.map(({ id, name, number }) => (
+        <li key={id}>
+          {name}: {number}
+          <button onClick={() => removeContact(id)}>
+            <MdDeleteForever />
+          </button>
+        </li>
+      ))}
     </List>
   );
 }
