@@ -32,10 +32,12 @@ const ContactsSlice = createSlice({
         state.contacts = action.payload;
       })
       .addCase(addContact.fulfilled, (state, action) => {
-        state.contacts = action.payload;
+        state.contacts = [...state.contacts, action.payload];
       })
       .addCase(deleteContact.fulfilled, (state, action) => {
-        state.contacts.filter(contact => contact.id !== action.payload.id);
+        state.contacts = state.contacts.filter(
+          contact => contact.id !== action.payload.id
+        );
       })
       .addMatcher(isAnyOf(...getActions('pending')), handlePending)
       .addMatcher(isAnyOf(...getActions('fulfilled')), handleFulfilled)

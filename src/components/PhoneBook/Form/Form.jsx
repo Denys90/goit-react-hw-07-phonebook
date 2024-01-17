@@ -12,6 +12,8 @@ function Form() {
   const handleSubmit = e => {
     e.preventDefault();
 
+    const form = e.target;
+
     const newContact = {
       name: e.target.elements.name.value,
       number: e.target.elements.number.value,
@@ -21,18 +23,7 @@ function Form() {
       ({ name }) => name.toLowerCase() === newContact.name.toLowerCase()
     );
 
-    if (existingName) {
-      toast.error(`${newContact.name} is already in contacts!`, {
-        position: 'top-right',
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: 'light',
-      });
-    } else {
+    if (!existingName) {
       toast.success('The contact is added to the phone book!', {
         position: 'top-right',
         autoClose: 3000,
@@ -43,10 +34,23 @@ function Form() {
         progress: undefined,
         theme: 'light',
       });
+    } else {
+      toast.error(`${newContact.name} is already in contacts!`, {
+        position: 'top-right',
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'light',
+      });
+      return form.reset();
     }
+
     addContact(newContact);
 
-    e.target.reset();
+    form.reset();
   };
 
   return (
